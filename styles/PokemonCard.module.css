@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 89.9vh;
+    height: 84vh;
 }
 
 .card_container{
@@ -16,21 +16,20 @@
     border: 5px solid #2B2A4C;
     border-radius: 0.5rem;
     background-color: #B31312;    
-}
-
-.card_container:hover{
     box-shadow: 0px 90px 69px -14px rgba(0,0,0,0.75);
+    transform-style: preserve-3d;
 }
 
 .pokemon_title{
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 2rem;
     height: 5%;
     width: 100%;
     background-color: #EEE2DE;
-    border-top-right-radius: 0.5rem;
-    border-top-left-radius: 0.5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    transform-style: preserve-3d;
 }
 
 .pokemon_image{
@@ -39,8 +38,10 @@
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;
+    transform-style: preserve-3d;
 }
+
 
 .pokemon_details{
     display: flex;
@@ -48,23 +49,25 @@
     gap: 1rem;
     height: 50%;
     width: 100%;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+    border-radius: 0 0 0.5rem 0.5rem;
     padding: 1rem;
     background-color: #EEE2DE;
+    transform-style: preserve-3d;
 }
 
 .types_container{
     display: flex;
     gap: 0.5rem;
     padding: 0.5rem;
+    transform-style: preserve-3d;
 }
 
 .chip{
-    color: white !important;
-    font-size: 1rem !important;
+    color: white ;
+    font-size: 1rem ;
     font-weight: 700;
     letter-spacing: 0.1rem;
+    /* transform: translateZ(15px); */
 }
 
 .pokemon_info{
