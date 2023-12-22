@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "../../styles/PokemonCard.module.css";
 import { Chip } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import VanillaTilt from "vanilla-tilt";
 
 export default function Card({ pokemon }) {
@@ -30,18 +30,18 @@ export default function Card({ pokemon }) {
       </div>
       <div className={styles.pokemon_details} style={{transformStyle: 'preserve-3d'}}>
         <div style={{transformStyle: 'preserve-3d'}}>
-          <h4 style={{transform: 'translateZ(15px)'}}>Description:</h4>
-          <p style={{transform: 'translateZ(15px)'}}>{pokemon.flavor.replace(/[\n\f]/g, " ")}</p>
+          <h4 style={{transform: 'translateZ(20px)'}}>Description:</h4>
+          <p style={{transform: 'translateZ(20px)'}}>{pokemon.flavor.replace(/[\n\f]/g, " ")}</p>
         </div>
         <div style={{transformStyle: 'preserve-3d'}}>
-          <h4 style={{transform: 'translateZ(15px)'}}>Type:</h4>
+          <h4 style={{transform: 'translateZ(20px)'}}>Type:</h4>
           <div className={styles.types_container} style={{transformStyle: 'preserve-3d'}}>
             {pokemon.types.map((item, index) => (
               <Chip
                 key={index}
                 label={item.type.name}
                 className={styles.chip}
-                style={{transform: 'translateZ(15px)'}}
+                style={{transform: 'translateZ(20px)'}}
                 sx={{
                   backgroundColor: `var(--${item.type.name})`,
                 }}
@@ -50,11 +50,11 @@ export default function Card({ pokemon }) {
           </div>
         </div>
         <div className={styles.pokemon_info} style={{transformStyle: 'preserve-3d'}}>
-          <div style={{transform: 'translateZ(15px)'}}>
+          <div style={{transform: 'translateZ(20px)'}}>
             <h4>Height:</h4>
             <p>{pokemon.height * 10} cm</p>
           </div>
-          <div style={{transform: 'translateZ(15px)'}}>
+          <div style={{transform: 'translateZ(20px)'}}>
             <h4>Weight:</h4>
             <p>{pokemon.weight / 10} kg</p>
           </div>

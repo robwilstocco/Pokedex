@@ -1,23 +1,59 @@
-import Image from "next/image";
-import styles from "styles/Home.module.css";
+import styled from 'styled-components';
 
-const MiniCard = ({ id, name }) => {
+const PokemonCard = styled.li`
+  display: flex;
+  align-items: center;
+  width: 300px;
+  min-width: 300px;
+  border: 1px solid #ccc;  
+  border-radius: 0.5rem;
+  gap: 1rem;
+  padding: 0.5rem;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s;
+  background-color: #FFFFFF;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+
+const PokemonImage = styled.img`
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+`;
+
+const PokemonInfo = styled.div`
+  margin-left: 10px;
+`;
+
+const PokemonId = styled.h4`
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+`;
+
+const PokemonName = styled.h1`
+  font-size: 24px;
+  font-weight: normal;
+  color: #333;
+  text-transform: capitalize;
+`;
+
+export default function MiniCard({ id, name }) {
   return (
-    <li className={styles.pokemon_item}>
-      <Image
-        // src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index + 1}.png`}
+    <PokemonCard>
+      <PokemonImage
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-        width="70"
-        height="70"
         alt="PokeCard"
-        priority={true}
       />
-      <div className={styles.pokemon_info}>
-        <h4 className={styles.pokemon_id}>Nº {id.padStart(4,'0')}</h4>
-        <h1 className={styles.pokemon_name}>{name}</h1>
-      </div>
-    </li>
+      <PokemonInfo>
+        <PokemonId>Nº {id.padStart(4, "0")}</PokemonId>
+        <PokemonName>{name}</PokemonName>
+      </PokemonInfo>
+    </PokemonCard>
   );
-};
+}
 
-export default MiniCard;

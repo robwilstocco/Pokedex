@@ -1,12 +1,19 @@
 import Header from "./Header";
 import Footer from "./Footer";
-import styles from '../../styles/Layout.module.css';
+import styled from "styled-components";
+
+const Wrapper = styled.main`
+  min-height: 100vh;
+  padding-top: 80px;
+  padding-bottom: 50px;
+  background-color: var(--background);
+`;
 
 export default function Layout({ children }) {
   return (
     <>
       <Header />
-      <main className={styles.wrapper}>{children}</main>
+      <Wrapper>{children}</Wrapper>
       <Footer />
     </>
   );
