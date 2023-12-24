@@ -42,12 +42,12 @@ const PokemonName = styled.h1`
   text-transform: capitalize;
 `;
 
-export default function MiniCard({ id, name }) {
+const MiniCard = ({ id, name }) => {
   return (
     <PokemonCard>
       <PokemonImage
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-        alt="PokeCard"
+        alt={name}
       />
       <PokemonInfo>
         <PokemonId>Nº {id.padStart(4, "0")}</PokemonId>
@@ -56,4 +56,6 @@ export default function MiniCard({ id, name }) {
     </PokemonCard>
   );
 }
+
+export default MiniCard
 
