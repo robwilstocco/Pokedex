@@ -1,9 +1,9 @@
-import styles from "styles/Home.module.css";
 import MiniCard from "../src/components/MiniCard";
 import Link from "next/link";
 import { setCookie, parseCookies } from "nookies";
 import { Pagination } from "@mui/material";
 import { useRouter } from "next/router";
+import styled from "styled-components";
 
 export async function getServerSideProps(ctx) {
   const pageNumber = parseCookies(ctx, "currentPage");
@@ -33,21 +33,43 @@ async function getPokemons(currentPage) {
   return await res.json();
 }
 
+const Wrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 15%;
+  min-height: calc(100vh - 165px);
+`;
+
+const List = styled.div`
+  display: flex;
+    flex-direction: row;
+    flex-wrap:  wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+`;
+
+const StyledLink = styled(Link)`
+  color: #000;
+    text-decoration: none;
+`;
+
 export default function Home({ pokemons, page, totalPages }) {
   const router = useRouter();
   return (
-    <section className={styles.content_container}>
-      <ul className={styles.pokemon_list}>
+    <Wrapper>
+      <List>
         {pokemons.map((pokemon) => (
-          <Link
+          <StyledLink
             key={pokemon.id}
             href={`/pokemon/${pokemon.id}`}
-            className={styles.pokemon_link}
           >
             <MiniCard id={pokemon.id} name={pokemon.name} />
-          </Link>
+          </StyledLink>
         ))}
-      </ul>
+      </List>
       <Pagination
         count={totalPages}
         color="primary"
@@ -58,6 +80,6 @@ export default function Home({ pokemons, page, totalPages }) {
           router.push("/");
         }}
       />
-    </section>
+    </Wrapper>
   );
 }

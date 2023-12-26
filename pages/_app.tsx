@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 export default function App({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    console.log(Router.events)
     Router.events.on("routeChangeStart", () => setLoading(true));
     Router.events.on("routeChangeComplete", () => setLoading(false));
     Router.events.on("routeChangeError", () => setLoading(false));
@@ -24,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <link rel="shortcut icon" href="/images/logo.png" className="favicon" />
+        <link rel="shortcut icon" href="/images/logo.png"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>PokeCard</title>
       </Head>
