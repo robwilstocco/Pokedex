@@ -75,14 +75,12 @@ const TypesContainer = styled.div`
   transform-style: preserve-3d;
 `;
 
-const StyledChips = styled(Chip)<{ $color: string; }>`
-    color: white ;
+const StyledChips = styled(Chip)`    
     font-size: 0.8rem ;
     font-weight: 700;
     letter-spacing: 0.1rem;
     text-transform: capitalize;
     transform: translateZ(20px);
-    background-color: ${props => `var(--${props.$color})`};
 `
 
 const GeneralInfo = styled.div`
@@ -133,7 +131,10 @@ export default function Card({ pokemon }) {
               <StyledChips
                 key={index}
                 label={item.type.name}
-                $color={item.type.name}
+                sx={{
+                  backgroundColor: `var(--${item.type.name})`,
+                  color: '#FFFFFF'
+                }}
               />
             ))}
           </TypesContainer>
