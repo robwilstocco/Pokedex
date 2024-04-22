@@ -7,6 +7,10 @@
 
 ## Descrição
 <p>Uma aplicação Next.js que fornece informações sobre pokemons em forma de cards à partir da "PokéAPI"</p>
+  <img src="https://github.com/robwilstocco/Pokedex/blob/main/public/images/inicial_page.png"/>
+  <p align="center">
+    <img align="center" src="https://github.com/robwilstocco/Pokedex/blob/main/public/images/card.gif"/>
+  </p>
 <a href="https://pokedex-ten-murex-28.vercel.app/">Você pode visualizar o projeto no ar clicando aqui</a>
 
 <h2>:grinning: Como utilizar</h2>
