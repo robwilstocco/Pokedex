@@ -1,3 +1,3 @@
 export default function NotFound() {
-    return <div>404 - NOT FOUND </div>
+    return <div style={{color: '#000'}}>404 - NOT FOUND </div>
   }

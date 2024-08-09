@@ -73,8 +73,9 @@ export default function Home({ pokemons, page, totalPages }) {
       <Pagination
         count={totalPages}
         color="primary"
-        size="large"
+        size="medium"
         page={Number(page)}
+        siblingCount={0}
         onChange={(event: React.ChangeEvent, page: number) => {
           setCookie(null, "currentPage", page.toString());
           router.push("/");

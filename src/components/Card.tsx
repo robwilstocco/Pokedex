@@ -114,17 +114,16 @@ export default function Card({ pokemon }) {
         <PokemonImageBackground>
           <Image
             id="imagem"
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`}
+            src={pokemon.image}
             width="200"
             height="200"
             alt={pokemon.name}
-            priority={true}
             style={{ transform: "translateZ(20px)" }}
           />
         </PokemonImageBackground>
         <PokemonDetails>
           <InfoTitle>Description:</InfoTitle>
-          <InfoText>{pokemon.flavor.replace(/[\n\f]/g, " ")}</InfoText>
+          <InfoText>{pokemon.flavor?.replace(/[\n\f]/g, " ") || 'N/A'}</InfoText>
           <InfoTitle>Type:</InfoTitle>
           <TypesContainer>
             {pokemon.types.map((item, index) => (
