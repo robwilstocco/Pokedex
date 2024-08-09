@@ -13,6 +13,7 @@ export async function getServerSideProps(ctx) {
   const data = await getPokemons(currentPage);
   data.results.forEach((item) => {
     const id = item.url.split("/");
+    item.image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id[6]}.png`
     item.id = id[6];
   });
 
@@ -29,8 +30,8 @@ async function getPokemons(currentPage) {
   const offset =
     currentPage === "1" ? "0" : (Number(currentPage) * 50 - 50).toString();
   const api = `https://pokeapi.co/api/v2/pokemon/`;
-  const res = await fetch(`${api}/?limit=${50}&offset=${offset}`);
-  return await res.json();
+  const res = await fetch(`${api}/?limit=${50}&offset=${offset}`).then((data) => data.json());
+  return res;
 }
 
 const Wrapper = styled.section`
@@ -66,7 +67,7 @@ export default function Home({ pokemons, page, totalPages }) {
             key={pokemon.id}
             href={`/pokemon/${pokemon.id}`}
           >
-            <MiniCard id={pokemon.id} name={pokemon.name} />
+            <MiniCard id={pokemon.id} name={pokemon.name} image={pokemon.image}/>
           </StyledLink>
         ))}
       </List>

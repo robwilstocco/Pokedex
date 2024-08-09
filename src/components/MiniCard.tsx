@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 
 const PokemonCard = styled.li`
@@ -19,12 +20,6 @@ const PokemonCard = styled.li`
   }
 `;
 
-const PokemonImage = styled.img`
-  width: 70px;
-  height: 70px;
-  object-fit: cover;
-`;
-
 const PokemonInfo = styled.div`
   margin-left: 10px;
 `;
@@ -42,13 +37,17 @@ const PokemonName = styled.h1`
   text-transform: capitalize;
 `;
 
-const MiniCard = ({ id, name }) => {
+const MiniCard = ({ id, name, image }) => {
   return (
     <PokemonCard>
-      <PokemonImage
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
-        alt={name}
-      />
+      <Image
+            id="imagem"
+            src={image}
+            width="70"
+            height="70"
+            alt={name}
+            style={{ transform: "translateZ(20px)" }}
+          />
       <PokemonInfo>
         <PokemonId>Nº {id.padStart(4, "0")}</PokemonId>
         <PokemonName>{name}</PokemonName>

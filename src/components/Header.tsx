@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { setCookie } from "nookies";
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
@@ -25,9 +26,9 @@ const Logo = styled(Link)`
 const Header = () => {
   return (
     <StyledHeader>
-      <Logo href={"/"}>
+      <Logo href={"/"} onClick ={() => setCookie(null, "currentPage", '1')}>
         <Image src="/images/logo.png" width="50" height="50" alt="PokeCard" />
-        <Image src="/images/logo_title.png" width="300" height="100" alt="PokeCard" />
+        <Image src="/images/logo_title.png" width="300" height="100" alt="PokeCard" priority={true}/>
       </Logo>
     </StyledHeader>
   );
