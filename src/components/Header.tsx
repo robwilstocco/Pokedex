@@ -14,6 +14,7 @@ const StyledHeader = styled.header`
   right: 0;
   background-color: var(--primary);
   padding: 0 5rem;
+  z-index: 1;
 `;
 
 const Logo = styled(Link)`
