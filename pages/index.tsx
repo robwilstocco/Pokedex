@@ -17,6 +17,7 @@ export async function getServerSideProps(ctx) {
     item.id = id[6];
   });
 
+
   return {
     props: {
       pokemons: data.results,
@@ -30,7 +31,7 @@ async function getPokemons(currentPage) {
   const offset =
     currentPage === "1" ? "0" : (Number(currentPage) * 50 - 50).toString();
   const api = `https://pokeapi.co/api/v2/pokemon/`;
-  const res = await fetch(`${api}/?limit=${50}&offset=${offset}`).then((data) => data.json());
+  const res = await fetch(`${api}/?limit=${50}&offset=${offset}`).then((data) => data.json());  
   return res;
 }
 
@@ -53,11 +54,11 @@ const List = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  color: #000;
+    color: #000;
     text-decoration: none;
 `;
 
-export default function Home({ pokemons, page, totalPages }) {
+export default function Home({ pokemons, page, totalPages}) {
   const router = useRouter();
   return (
     <Wrapper>

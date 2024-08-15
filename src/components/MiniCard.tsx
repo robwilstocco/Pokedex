@@ -14,7 +14,6 @@ const PokemonCard = styled.li`
   cursor: pointer;
   transition: transform 0.3s;
   background-color: #FFFFFF;
-
   &:hover {
     transform: scale(1.05);
   }
