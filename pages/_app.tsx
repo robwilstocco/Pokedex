@@ -23,10 +23,11 @@ export default function App({ Component, pageProps }: AppProps) {
       Router.events.off("routeChangeError", () => setLoading(false));
     };
   }, []);
+
   return (
     <>
       <Head>
-        <link rel="shortcut icon" href="/images/logo.png"/>
+        <link rel="shortcut icon" href="/images/logo.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>PokeCard</title>
       </Head>

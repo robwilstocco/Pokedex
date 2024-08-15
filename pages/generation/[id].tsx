@@ -12,20 +12,20 @@ export const getServerSideProps = async (ctx) => {
 
   const id = ctx.params.id.toString();
   const pokemon = await fetch(`https://pokeapi.co/api/v2/generation//${id}`).then((data) => data.json());
-  const maxPokemons = pokemon.pokemon_species.length -1;
+  const maxPokemons = pokemon.pokemon_species.length - 1;
   pokemon.pokemon_species.forEach((item) => {
     const id = item.url.split("/");
     item.image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id[6]}.png`
     item.id = id[6];
   });
-  
+
   return {
     props: {
       pokemons: pokemon.pokemon_species,
       page: currentPage,
       totalPages: Math.ceil(maxPokemons / 50),
     },
-    
+
   }
 }
 
@@ -54,7 +54,6 @@ const StyledLink = styled(Link)`
 
 export default function Pokemon({ pokemons, page, totalPages }) {
   const router = useRouter();
-  console.log(pokemons)
   return (
     <Wrapper>
       <List>
@@ -63,7 +62,7 @@ export default function Pokemon({ pokemons, page, totalPages }) {
             key={pokemon.id}
             href={`/pokemon/${pokemon.id}`}
           >
-            <MiniCard id={pokemon.id} name={pokemon.name} image={pokemon.image}/>
+            <MiniCard id={pokemon.id} name={pokemon.name} image={pokemon.image} />
           </StyledLink>
         ))}
       </List>

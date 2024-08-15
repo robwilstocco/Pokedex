@@ -1,20 +1,19 @@
-import Header from "./Header";
+import Header from "./Header/Header";
 import Footer from "./Footer";
 import styled from "styled-components";
+import NavBar from "./NavBar/NavBar";
 
 const Wrapper = styled.main`
-  min-height: 100%;
-  /* padding-top: 80px;
-  padding-bottom: 50px; */
-  background-color: var(--background);
-`;
+  min-height: 100vh;
+`
 
 export default function Layout({ children }) {
   return (
-    <>
+    <Wrapper >
       <Header />
-      <Wrapper>{children}</Wrapper>
+      <NavBar />
+      {children}
       <Footer />
-    </>
+    </Wrapper>
   );
 }

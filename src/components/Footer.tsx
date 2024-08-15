@@ -5,10 +5,11 @@ const FooterStyled = styled.footer`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
+  padding: 1rem;
+  /* position: fixed;
   bottom: 0;
   left: 0;
-  right: 0;
+  right: 0; */
   background-color: var(--secondary);
 `;
 
@@ -18,10 +19,11 @@ const FooterText = styled.h4`
 `;
 
 export default function Footer() {
+  const year = new Date().getFullYear()
   return (
     <FooterStyled>
       <FooterText>
-        All content & design © Pokémon images & names © 1995-2023 Nintendo/Game Freak. © 2023
+        {`All content & design © Pokémon images & names © 1995-${year} Nintendo/Game Freak. © ${year}`}
       </FooterText>
     </FooterStyled>
   );
