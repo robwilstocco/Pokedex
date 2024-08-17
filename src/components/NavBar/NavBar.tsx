@@ -3,9 +3,11 @@ import { DropDown, DropDownButton, DropDownContent, DropDownLink, NavbarWrapper,
 import { getGenerations, getTypes } from "../../api";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { setCookie } from "nookies";
 
 
-export default function NavBar() {
+const NavBar = () => {
     const { data: generations } = useQuery({ queryKey: ['generations'], queryFn: getGenerations });
     const { data: types } = useQuery({ queryKey: ['types'], queryFn: getTypes });
     const [showIcon, setShowIcon] = useState(false);
@@ -30,7 +32,9 @@ export default function NavBar() {
 
     return (
         <StyledNavbar>
-            {showIcon && <Image src="/images/logo.png" width="30" height="30" alt="PokeCard" />}
+            {showIcon && <Link href={'/'} onClick={() => setCookie(null, "currentPage", '1')}>
+                <Image src="/images/logo.png" width="30" height="30" alt="PokeCard" />
+            </Link>}
             <NavbarWrapper>
                 <DropDown>
                     <DropDownButton>Generations</DropDownButton>
@@ -52,3 +56,5 @@ export default function NavBar() {
         </StyledNavbar>
     )
 }
+
+export default NavBar;

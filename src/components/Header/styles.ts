@@ -7,12 +7,13 @@ export const StyledHeader = styled.header`
   align-items: center;
   padding: 1rem;
   height: 80px;
+  width: 100%;
   background-color: var(--primary);
   z-index: 1;
 `;
 export const HeaderWrapper = styled.div`
     width: 100%;
-    max-width: 75rem;
+    max-width: 80rem;
     display: flex;
     justify-content: space-between;
     align-items: center;

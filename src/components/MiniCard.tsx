@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const PokemonCard = styled.li`
   display: flex;
   align-items: center;
-  width: 300px;
-  min-width: 300px;
+  width: 260px;
+  min-width: 260px;
   border: 1px solid #ccc;  
   border-radius: 0.5rem;
   gap: 1rem;
@@ -40,13 +40,13 @@ const MiniCard = ({ id, name, image }) => {
   return (
     <PokemonCard>
       <Image
-            id="imagem"
-            src={image}
-            width="70"
-            height="70"
-            alt={name}
-            style={{ transform: "translateZ(20px)" }}
-          />
+        id="imagem"
+        src={image}
+        width="70"
+        height="70"
+        alt={name}
+        style={{ transform: "translateZ(20px)" }}
+      />
       <PokemonInfo>
         <PokemonId>Nº {id.padStart(4, "0")}</PokemonId>
         <PokemonName>{name}</PokemonName>

@@ -1,6 +1,5 @@
 import "../styles/global.css";
 import type { AppProps } from "next/app";
-import Layout from "../src/components/Layout";
 import Head from "next/head";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "../utils/theme";
@@ -8,6 +7,7 @@ import { Router } from "next/router";
 import Loading from "../src/components/Loading";
 import { useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Layout from "../src/components/Layout/Layout";
 
 export default function App({ Component, pageProps }: AppProps) {
 

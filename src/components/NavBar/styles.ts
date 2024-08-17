@@ -2,6 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 
 export const StyledNavbar = styled.nav`
+width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +17,7 @@ export const StyledNavbar = styled.nav`
 
 export const NavbarWrapper = styled.div`
   width: 100%;
-  max-width: 75rem;
+  max-width: 80rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
