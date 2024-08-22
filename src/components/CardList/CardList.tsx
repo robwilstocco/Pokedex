@@ -1,5 +1,3 @@
-import Link from "../Link/Link"
-import MiniCard from "../MiniCard"
 import { Container } from "./styles"
 
 

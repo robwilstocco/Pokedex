@@ -8,7 +8,7 @@ width: 100%;
   align-items: center;
   padding: 1rem;
   gap: 1rem;
-  height: 50px;
+  height: 40px;
   background-color: var(--secondary);
   position: sticky;
   top: 0;
@@ -28,7 +28,7 @@ export const NavbarWrapper = styled.div`
 `
 
 export const DropDownButton = styled.button`
-  height: 50px;
+  height: 40px;
   background-color: transparent;
   color: var(--background);
   font-size: 1rem;
@@ -36,6 +36,12 @@ export const DropDownButton = styled.button`
   text-transform: uppercase;
   border: none;
   cursor: pointer;
+  &:hover{
+    background-color: var(--primary);
+    opacity: 0.5;
+    color: #000;
+    font-weight: bold;
+  }
 `
 export const DropDownContent = styled.div`
   min-width: 150px;

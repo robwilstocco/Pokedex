@@ -1,6 +1,6 @@
 import axios from "axios";
 import IRequest from "../interfaces/IRequest";
-import { IPokemon, IPokemons } from "../interfaces/IPokemon";
+import { IPokemon } from "../interfaces/IPokemon";
 
 const http = axios.create({
     baseURL: 'https://pokeapi.co/api/v2/',
@@ -9,7 +9,6 @@ const http = axios.create({
         Content: 'application/json'
     }
 })
-
 
 export const getGenerations = async () => {
     try {
@@ -23,23 +22,28 @@ export const getGenerations = async () => {
 export const getTypes = async () => {
     try {
         const { data } = await http.get<IRequest>('/type')
-        return data.results
+        return data.results;
     } catch (error) {
         throw new Error('Could not get pokemon types')
     }
 }
 
-export async function getServerSidePokemons(currentPage: number, limit: number): Promise<IPokemon[]> {
-    const offset = currentPage === 1 ? "0" : (Number(currentPage) * limit - limit).toString();
+export const getServerSidePokemons = async (currentPage: number, limit: number, max: number): Promise<IPokemon[]> => {
+    const offset = currentPage === 1 ? 0 : (Number(currentPage) * limit - limit);
+    const officialTotal = limit + offset > max ? max - offset : limit;
     try {
-        const { data } = await http.get<IPokemons>(`/pokemon/?limit=${limit}&offset=${offset}`)
-        data.results.forEach((pokemon: IPokemon) => {
-            const id = pokemon.url.split("/");
-            pokemon.image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id[6]}.png`
-            pokemon.id = id[6];
+        const { data } = await http.get<IRequest>(`/pokemon/?limit=${officialTotal}&offset=${offset}`);
+        const pokemon: IPokemon[] = [];
+        data.results.forEach((result) => {
+            const id = result.url.split("/");
+            pokemon.push({
+                id: id[6],
+                name: result.name.replaceAll('-', ' '),
+                image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id[6]}.png`,
+            });
         });
-        return data.results
+        return pokemon;
     } catch (error) {
-        throw new Error('Could not get pokemons')
+        throw new Error('Could not get pokemon list');
     }
 }

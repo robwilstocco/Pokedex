@@ -2,23 +2,23 @@ import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 import { setCookie, parseCookies } from "nookies";
 import { Pagination } from "@mui/material";
-import MiniCard from "../src/components/MiniCard";
+import MiniCard from "../src/components/MiniCard/MiniCard";
 import Link from "../src/components/Link/Link";
 import CardList from "../src/components/CardList/CardList";
 import { getServerSidePokemons } from "../src/api";
 import { IHomeProps } from "../src/interfaces/IHomeProps";
 
 const limit = 50;
-const maxPokemons = 1017;
+const maxPokemons = 1025;
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   // console.log(ctx.req.cookies)
   const { currentPage } = parseCookies(ctx, "currentPage");
-  const pokemons = await getServerSidePokemons(Number(currentPage), limit);
+  const pokemons = await getServerSidePokemons(Number(currentPage), limit, maxPokemons);
   return {
     props: {
       pokemons,
-      page: currentPage || 1,
+      page: Number(currentPage) || 1,
       totalPages: Math.ceil(maxPokemons / limit),
     },
   };
@@ -41,9 +41,9 @@ export default function Home({ pokemons, page, totalPages }: IHomeProps) {
       <Pagination
         count={totalPages}
         color="primary"
-        size="medium"
-        page={Number(page)}
-        siblingCount={1}
+        size="small"
+        page={page}
+        siblingCount={2}
         onChange={(_, page: number) => {
           setCookie(null, "currentPage", page.toString());
           router.push("/");

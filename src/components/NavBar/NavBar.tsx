@@ -32,9 +32,11 @@ const NavBar = () => {
 
     return (
         <StyledNavbar>
-            {showIcon && <Link href={'/'} onClick={() => setCookie(null, "currentPage", '1')}>
-                <Image src="/images/logo.png" width="30" height="30" alt="PokeCard" />
-            </Link>}
+            {showIcon &&
+                <Link href={'/'} onClick={() => setCookie(null, "currentPage", '1')}>
+                    <Image src="/images/logo.png" width="30" height="30" alt="PokeCard" />
+                </Link>
+            }
             <NavbarWrapper>
                 <DropDown>
                     <DropDownButton>Generations</DropDownButton>

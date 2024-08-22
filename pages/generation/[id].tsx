@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import MiniCard from '../../src/components/MiniCard';
+import MiniCard from '../../src/components/MiniCard/MiniCard';
 import { Pagination } from '@mui/material';
 import { parseCookies, setCookie } from 'nookies';
 

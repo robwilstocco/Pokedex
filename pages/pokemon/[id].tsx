@@ -6,14 +6,14 @@ export const getServerSideProps = async (context) => {
   const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((data) => data.json());
   const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
   const flavor = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then(async (data) => {
-    if(data.status !== 404) {
+    if (data.status !== 404) {
       const response = await data.json()
       return response.flavor_text_entries[0].flavor_text;
-    }else {
+    } else {
       return pokemon.flavor = 'N/A';
     }
   });
-  
+
   return {
     props: {
       pokemon: {
@@ -22,7 +22,7 @@ export const getServerSideProps = async (context) => {
         image
       }
     },
-    
+
   }
 }
 
@@ -37,7 +37,7 @@ const Wrapper = styled.section`
 export default function Pokemon({ pokemon }) {
   return (
     <Wrapper>
-      <Card pokemon={pokemon}/>
+      <Card pokemon={pokemon} />
     </Wrapper>
   )
 }

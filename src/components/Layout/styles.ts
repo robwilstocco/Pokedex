@@ -8,9 +8,9 @@ export const Container = styled.div`
 export const Content = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  background-color: var(--background);
   align-items: center;
-  height: 100%;
   flex: 1;
   padding: 1rem;
   gap: 1rem;
