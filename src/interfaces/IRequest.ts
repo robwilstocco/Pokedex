@@ -1,12 +1,48 @@
-
-export interface IResult {
-    name: string,
-    url: string
-}
-
-export default interface IRequest {
+export interface IRequest {
     count: number
     next: null
     previous: null
-    results: IResult[]
+    results: [{
+        name: string,
+        url: string
+    }]
+}
+
+export interface IPokemonDetailRequest {
+    id: number,
+    name: string,
+    height: number,
+    weight: number,
+    types: [{
+        slot: number,
+        type: {
+            name: string,
+            url: string
+        }
+    }],
+    cries: {
+        latest: string,
+        legacy: string
+    }
+}
+
+export interface IPokemonSpeciesRequest {
+    evolution_chain: {
+        url: string
+    },
+    flavor_text_entries: [{
+        flavor_text: string,
+        language: {
+            name: string,
+            url: string
+        },
+        version: {
+            name: string,
+            url: string
+        }
+    }],
+    generation: {
+        name: string,
+        url: string
+    }
 }

@@ -1,17 +1,16 @@
-import { Container, Content } from "./styles";
+import { Container } from "./styles";
 import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
-import ILayout from "../../interfaces/ILayout";
+import { ILayout } from "../../interfaces/ILayout";
+import Wrapper from "../Wrapper/Wrapper";
 
 const Layout = ({ children }: ILayout) => {
     return (
         <Container>
             <Header />
             <NavBar />
-            <Content>
-                {children}
-            </Content>
+            {children}
             <Footer />
         </Container>
     );

@@ -1,7 +1,7 @@
 import { Container } from "./styles"
 
 
-const CardList = ({ children, pokemons }: any) => {
+const CardList = ({ children }: any) => {
     return (
         <Container>
             {children}

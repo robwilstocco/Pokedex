@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { setCookie } from "nookies";
-import { HeaderWrapper, Icons, IconsWrapper, Logo, StyledHeader } from "./styles";
+import { HeaderWrapper, Icons, IconsWrapper, StyledHeader } from "./styles";
 import { FaGithub } from "react-icons/fa";
 import Link from "../Link/Link";
 

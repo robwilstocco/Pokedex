@@ -1,3 +1,3 @@
-export default interface ILayout {
+export interface ILayout {
     children: React.ReactElement
 }

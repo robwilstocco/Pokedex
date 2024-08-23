@@ -1,43 +1,38 @@
-import Card from '../../src/components/Card';
-import styled from 'styled-components';
+import { GetServerSidePropsContext } from 'next';
+import Card from '../../src/components/Card/Card';
+import Wrapper from '../../src/components/Wrapper/Wrapper';
+import { getPokemonDetail } from '../../src/api';
+import { ICard } from '../../src/interfaces/ICard';
 
-export const getServerSideProps = async (context) => {
-  const id = context.params.id.toString();
-  const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((data) => data.json());
-  const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
-  const flavor = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then(async (data) => {
-    if (data.status !== 404) {
-      const response = await data.json()
-      return response.flavor_text_entries[0].flavor_text;
-    } else {
-      return pokemon.flavor = 'N/A';
-    }
-  });
-
-  return {
-    props: {
-      pokemon: {
-        ...pokemon,
-        flavor,
-        image
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  if (context?.params?.id) {
+    try {
+      const id = context.params.id.toString();
+      const pokemon = await getPokemonDetail(id);
+      return {
+        props: {
+          pokemon
+        },
       }
-    },
-
+    } catch (err) {
+      return {
+        redirect: {
+          destination: '/404',
+          permanent: false,
+        },
+      }
+    }
   }
 }
 
-const Wrapper = styled.section`
-  display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: calc(100vh - 165px);
-`
-
-export default function Pokemon({ pokemon }) {
+export default function Pokemon({ pokemon }: ICard) {
   return (
-    <Wrapper>
-      <Card pokemon={pokemon} />
+    <Wrapper justify='center'>
+      <Card {...pokemon} />
+      <audio controls>
+        <source src={pokemon.song} type="audio/ogg" />
+        Your browser does not support the audio element.
+      </audio>
     </Wrapper>
   )
 }

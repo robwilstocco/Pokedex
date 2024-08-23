@@ -9,6 +9,7 @@ export const PokemonCard = styled.li`
   border-radius: 0.5rem;
   max-height: 5.5rem;
   padding: 0.5rem;
+  gap: 0.5rem;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.3s;
@@ -19,7 +20,8 @@ export const PokemonCard = styled.li`
 `;
 
 export const PokemonInfo = styled.div`
-  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const PokemonId = styled.h3`

@@ -4,3 +4,22 @@ export interface IPokemon {
     image: string,
 }
 
+export interface IPokemonDetail {
+    id: number,
+    name: string,
+    image: string,
+    types: [{
+        slot: number,
+        type: {
+            name: string,
+            url: string
+        }
+    }],
+    flavor: string,
+    song: string,
+    height: number,
+    weight: number,
+    evolution_chain_id: string,
+    generation: string,
+}
+

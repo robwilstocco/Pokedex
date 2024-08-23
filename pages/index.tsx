@@ -5,8 +5,9 @@ import { Pagination } from "@mui/material";
 import MiniCard from "../src/components/MiniCard/MiniCard";
 import Link from "../src/components/Link/Link";
 import CardList from "../src/components/CardList/CardList";
-import { getServerSidePokemons } from "../src/api";
+import { getPokemonList } from "../src/api";
 import { IHomeProps } from "../src/interfaces/IHomeProps";
+import Wrapper from "../src/components/Wrapper/Wrapper";
 
 const limit = 50;
 const maxPokemons = 1025;
@@ -14,7 +15,7 @@ const maxPokemons = 1025;
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   // console.log(ctx.req.cookies)
   const { currentPage } = parseCookies(ctx, "currentPage");
-  const pokemons = await getServerSidePokemons(Number(currentPage), limit, maxPokemons);
+  const pokemons = await getPokemonList(Number(currentPage), limit, maxPokemons);
   return {
     props: {
       pokemons,
@@ -27,7 +28,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 export default function Home({ pokemons, page, totalPages }: IHomeProps) {
   const router = useRouter();
   return (
-    <>
+    <Wrapper justify="space-between">
       <CardList>
         {pokemons.map((pokemon) => (
           <Link
@@ -49,6 +50,6 @@ export default function Home({ pokemons, page, totalPages }: IHomeProps) {
           router.push("/");
         }}
       />
-    </>
+    </Wrapper>
   );
 }
