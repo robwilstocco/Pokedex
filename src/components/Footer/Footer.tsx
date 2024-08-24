@@ -1,7 +1,7 @@
 import { FooterStyled, FooterText } from "./styles";
 
 export default function Footer() {
-  const year = new Date().getFullYear()
+  const year = new Date().getFullYear();
   return (
     <FooterStyled>
       <FooterText>

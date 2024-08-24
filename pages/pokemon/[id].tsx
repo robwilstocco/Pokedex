@@ -1,38 +1,36 @@
-import { GetServerSidePropsContext } from 'next';
-import Card from '../../src/components/Card/Card';
-import Wrapper from '../../src/components/Wrapper/Wrapper';
-import { getPokemonDetail } from '../../src/api';
-import { ICard } from '../../src/interfaces/ICard';
+import { GetServerSidePropsContext } from "next";
+import Card from "../../src/components/Card/Card";
+import Wrapper from "../../src/components/Wrapper/Wrapper";
+import { getPokemonDetail } from "../../src/api";
+import { ICard } from "../../src/interfaces/ICard";
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext,
+) => {
   if (context?.params?.id) {
     try {
       const id = context.params.id.toString();
       const pokemon = await getPokemonDetail(id);
       return {
         props: {
-          pokemon
+          pokemon,
         },
-      }
+      };
     } catch (err) {
       return {
         redirect: {
-          destination: '/404',
+          destination: "/404",
           permanent: false,
         },
-      }
+      };
     }
   }
-}
+};
 
 export default function Pokemon({ pokemon }: ICard) {
   return (
-    <Wrapper justify='center'>
+    <Wrapper justify="space-around">
       <Card {...pokemon} />
-      <audio controls>
-        <source src={pokemon.song} type="audio/ogg" />
-        Your browser does not support the audio element.
-      </audio>
     </Wrapper>
-  )
+  );
 }

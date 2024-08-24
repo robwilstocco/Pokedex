@@ -15,7 +15,11 @@ const maxPokemons = 1025;
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   // console.log(ctx.req.cookies)
   const { currentPage } = parseCookies(ctx, "currentPage");
-  const pokemons = await getPokemonList(Number(currentPage), limit, maxPokemons);
+  const pokemons = await getPokemonList(
+    Number(currentPage),
+    limit,
+    maxPokemons,
+  );
   return {
     props: {
       pokemons,
@@ -31,11 +35,12 @@ export default function Home({ pokemons, page, totalPages }: IHomeProps) {
     <Wrapper justify="space-between">
       <CardList>
         {pokemons.map((pokemon) => (
-          <Link
-            key={pokemon.id}
-            href={`/pokemon/${pokemon.id}`}
-          >
-            <MiniCard id={pokemon.id} name={pokemon.name} image={pokemon.image} />
+          <Link key={pokemon.id} href={`/pokemon/${pokemon.id}`}>
+            <MiniCard
+              id={pokemon.id}
+              name={pokemon.name}
+              image={pokemon.image}
+            />
           </Link>
         ))}
       </CardList>

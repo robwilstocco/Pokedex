@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import styled from 'styled-components';
-import MiniCard from '../../src/components/MiniCard/MiniCard';
-import { Pagination } from '@mui/material';
-import { parseCookies, setCookie } from 'nookies';
+import Link from "next/link";
+import { useRouter } from "next/router";
+import styled from "styled-components";
+import MiniCard from "../../src/components/MiniCard/MiniCard";
+import { Pagination } from "@mui/material";
+import { parseCookies, setCookie } from "nookies";
 
 export const getServerSideProps = async (ctx) => {
   const pageNumber = parseCookies(ctx, "currentPage");
@@ -11,11 +11,13 @@ export const getServerSideProps = async (ctx) => {
     Object.keys(pageNumber).length > 0 ? pageNumber.currentPage : "1";
 
   const id = ctx.params.id.toString();
-  const pokemon = await fetch(`https://pokeapi.co/api/v2/generation//${id}`).then((data) => data.json());
+  const pokemon = await fetch(
+    `https://pokeapi.co/api/v2/generation//${id}`,
+  ).then((data) => data.json());
   const maxPokemons = pokemon.pokemon_species.length - 1;
   pokemon.pokemon_species.forEach((item) => {
     const id = item.url.split("/");
-    item.image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id[6]}.png`
+    item.image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id[6]}.png`;
     item.id = id[6];
   });
 
@@ -25,9 +27,8 @@ export const getServerSideProps = async (ctx) => {
       page: currentPage,
       totalPages: Math.ceil(maxPokemons / 50),
     },
-
-  }
-}
+  };
+};
 
 const Wrapper = styled.section`
   display: flex;
@@ -39,17 +40,17 @@ const Wrapper = styled.section`
 
 const List = styled.div`
   display: flex;
-    flex-direction: row;
-    flex-wrap:  wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
 `;
 
 const StyledLink = styled(Link)`
   color: #000;
-    text-decoration: none;
+  text-decoration: none;
 `;
 
 export default function Pokemon({ pokemons, page, totalPages }) {
@@ -58,11 +59,12 @@ export default function Pokemon({ pokemons, page, totalPages }) {
     <Wrapper>
       <List>
         {pokemons.map((pokemon) => (
-          <StyledLink
-            key={pokemon.id}
-            href={`/pokemon/${pokemon.id}`}
-          >
-            <MiniCard id={pokemon.id} name={pokemon.name} image={pokemon.image} />
+          <StyledLink key={pokemon.id} href={`/pokemon/${pokemon.id}`}>
+            <MiniCard
+              id={pokemon.id}
+              name={pokemon.name}
+              image={pokemon.image}
+            />
           </StyledLink>
         ))}
       </List>
@@ -78,5 +80,5 @@ export default function Pokemon({ pokemons, page, totalPages }) {
         }}
       />
     </Wrapper>
-  )
+  );
 }

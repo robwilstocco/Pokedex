@@ -13,7 +13,7 @@ export const PokemonCard = styled.li`
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.3s;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   &:hover {
     transform: scale(1.05);
   }

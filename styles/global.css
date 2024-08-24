@@ -1,39 +1,38 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap");
 
 :root {
-    /* App Colors */
-    --primary: #19A7CE;
-    --secondary: #146C94;
-    --hover: #AFD3E2;
-    --background: #F6F1F1;
-    /* Pokemon Type Colors */
-    --normal: #A1A1A1;
-    --fighting: #F08733;
-    --flying: #8FB8E4;
-    --poison: #6D4B97;
-    --ground: #895229;
-    --rock: #ADA984;
-    --bug: #95A135;
-    --ghost: #6B426E;
-    --steel: #74A2B9;
-    --fire: #D43A30;
-    --water: #4C79BC;
-    --grass: #5D9D3C;
-    --electric: #F2C341;
-    --psychic: #DC4D79;
-    --ice: #78CCF0;
-    --dragon: #4C60A9;
-    --dark: #4E403F;
-    --fairy: #BA7FB5;
-    --unknown: #76A696;
-    --shadow: #181616;
+  /* App Colors */
+  --primary: #19a7ce;
+  --secondary: #146c94;
+  --hover: #afd3e2;
+  --background: #f6f1f1;
+  /* Pokemon Type Colors */
+  --normal: #a1a1a1;
+  --fighting: #f08733;
+  --flying: #8fb8e4;
+  --poison: #6d4b97;
+  --ground: #895229;
+  --rock: #ada984;
+  --bug: #95a135;
+  --ghost: #6b426e;
+  --steel: #74a2b9;
+  --fire: #d43a30;
+  --water: #4c79bc;
+  --grass: #5d9d3c;
+  --electric: #f2c341;
+  --psychic: #dc4d79;
+  --ice: #78ccf0;
+  --dragon: #4c60a9;
+  --dark: #4e403f;
+  --fairy: #ba7fb5;
+  --unknown: #76a696;
+  --shadow: #181616;
 }
 
 * {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-

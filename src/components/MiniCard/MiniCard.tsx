@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import { IPokemon } from '../../interfaces/IPokemon';
-import { PokemonCard, PokemonId, PokemonInfo, PokemonName } from './styles';
+import Image from "next/image";
+import { IPokemon } from "../../interfaces/IPokemon";
+import { PokemonCard, PokemonId, PokemonInfo, PokemonName } from "./styles";
 
 const MiniCard = ({ id, name, image }: IPokemon) => {
   return (
@@ -19,7 +19,6 @@ const MiniCard = ({ id, name, image }: IPokemon) => {
       </PokemonInfo>
     </PokemonCard>
   );
-}
+};
 
-export default MiniCard
-
+export default MiniCard;

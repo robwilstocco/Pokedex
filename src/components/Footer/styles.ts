@@ -10,6 +10,6 @@ export const FooterStyled = styled.footer`
 `;
 
 export const FooterText = styled.h4`
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
 `;

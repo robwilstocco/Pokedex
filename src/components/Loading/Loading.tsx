@@ -1,7 +1,5 @@
-import { CircularProgress } from '@mui/material';
-import { LoadingText, LoadStyled } from './styles';
-
-
+import { CircularProgress } from "@mui/material";
+import { LoadingText, LoadStyled } from "./styles";
 
 const Loading = () => {
   return (
@@ -10,6 +8,6 @@ const Loading = () => {
       <LoadingText>Loading...</LoadingText>
     </LoadStyled>
   );
-}
+};
 
 export default Loading;

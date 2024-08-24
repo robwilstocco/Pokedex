@@ -1,4 +1,5 @@
 # PokeCards
+
 <div style="display: inline_block">
   <img src="https://img.shields.io/badge/Next.js-black?logo=nextdotjs"/>
   <img src="https://img.shields.io/badge/React.js-navy?logo=react"/>
@@ -6,6 +7,7 @@
 </div>
 
 ## Descrição
+
 <p>Uma aplicação Next.js que fornece informações sobre pokemons em forma de cards à partir da "PokéAPI"</p>
   <img src="https://github.com/robwilstocco/Pokedex/blob/main/public/images/inicial_page.png"/>
   <p align="center">

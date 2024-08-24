@@ -6,14 +6,14 @@ import { ILayout } from "../../interfaces/ILayout";
 import Wrapper from "../Wrapper/Wrapper";
 
 const Layout = ({ children }: ILayout) => {
-    return (
-        <Container>
-            <Header />
-            <NavBar />
-            {children}
-            <Footer />
-        </Container>
-    );
-}
+  return (
+    <Container>
+      <Header />
+      <NavBar />
+      {children}
+      <Footer />
+    </Container>
+  );
+};
 
 export default Layout;

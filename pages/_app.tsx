@@ -10,7 +10,6 @@ import Loading from "../src/components/Loading/Loading";
 import Layout from "../src/components/Layout/Layout";
 
 export default function App({ Component, pageProps }: AppProps) {
-
   const queryClient = new QueryClient();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -33,7 +32,9 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
-          <Layout>{loading ? <Loading /> : <Component {...pageProps} />}</Layout>
+          <Layout>
+            {loading ? <Loading /> : <Component {...pageProps} />}
+          </Layout>
         </ThemeProvider>
       </QueryClientProvider>
     </>
