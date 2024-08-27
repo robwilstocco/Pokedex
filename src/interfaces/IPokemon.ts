@@ -21,6 +21,6 @@ export interface IPokemonDetail {
   song: string;
   height: number;
   weight: number;
-  evolution_chain_id: string;
+  evolution_chain_id: number;
   generation: string;
 }

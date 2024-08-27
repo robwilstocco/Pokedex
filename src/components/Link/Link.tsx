@@ -1,7 +1,7 @@
 import { ILink } from "../../interfaces/ILink";
 import { StyledLink } from "./styles";
 
-const Link = ({ children, href, onclick }: ILink) => {
+const Link = ({ href, onclick, children }: ILink) => {
   return (
     <StyledLink href={href} onClick={onclick}>
       {children}

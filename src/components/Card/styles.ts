@@ -9,7 +9,10 @@ export const CardWrapper = styled.div`
   border: 5px solid #2b2a4c;
   border-radius: 0.5rem;
   background-color: #b31312;
-  box-shadow: 0px 90px 69px -14px rgba(0, 0, 0, 0.75);
+  margin-top: 1rem;
+  &:hover{
+    box-shadow: 0px 60px 60px -14px rgba(0, 0, 0, 0.75);
+  }
   transform-style: preserve-3d;
 `;
 
@@ -39,7 +42,6 @@ export const DetailsGroup = styled.div<IWrapper>`
   flex-direction: ${(props) => (props.direction ? props.direction : "column")};
   gap: 0.5rem;
   transform: translateZ(15px);
-  w
 `;
 
 export const Title = styled.h3`

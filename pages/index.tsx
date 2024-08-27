@@ -8,23 +8,21 @@ import CardList from "../src/components/CardList/CardList";
 import { getPokemonList } from "../src/api";
 import { IHomeProps } from "../src/interfaces/IHomeProps";
 import Wrapper from "../src/components/Wrapper/Wrapper";
-
-const limit = 50;
-const maxPokemons = 1025;
+import { LIMIT, MAX_POKEMON } from "../utils/globalConstants";
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   // console.log(ctx.req.cookies)
   const { currentPage } = parseCookies(ctx, "currentPage");
   const pokemons = await getPokemonList(
     Number(currentPage),
-    limit,
-    maxPokemons,
+    LIMIT,
+    MAX_POKEMON,
   );
   return {
     props: {
       pokemons,
       page: Number(currentPage) || 1,
-      totalPages: Math.ceil(maxPokemons / limit),
+      totalPages: Math.ceil(MAX_POKEMON / LIMIT),
     },
   };
 }

@@ -90,7 +90,7 @@ export const getPokemonDetail = async (id: string): Promise<IPokemonDetail> => {
       song: pokemon.cries?.latest || "",
       height: pokemon.height,
       weight: pokemon.weight,
-      evolution_chain_id: getIdByURL(species.evolution_chain.url),
+      evolution_chain_id: Number(getIdByURL(species.evolution_chain.url)),
       generation: species.generation.name
         .replace("generation-", "")
         .toUpperCase(),

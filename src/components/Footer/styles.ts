@@ -7,6 +7,7 @@ export const FooterStyled = styled.footer`
   justify-content: center;
   padding: 1rem;
   background-color: var(--secondary);
+  z-index: 1;
 `;
 
 export const FooterText = styled.h4`
