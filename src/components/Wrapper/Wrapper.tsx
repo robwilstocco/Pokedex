@@ -8,7 +8,7 @@ const Wrapper = ({
   align = "center",
 }: IWrapper) => {
   return (
-    <Content direction={direction} justify={justify} align={align}>
+    <Content $direction={direction} $justify={justify} $align={align}>
       {children}
     </Content>
   );

@@ -22,7 +22,7 @@ const NavBar = () => {
   const { data: types } = useQuery({ queryKey: ["types"], queryFn: getTypes });
   const [showIcon, setShowIcon] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const location = usePathname()
+  const location = usePathname();
 
   const handleScroll = () => {
     if (window.scrollY > 80) {
@@ -49,9 +49,9 @@ const NavBar = () => {
         </Link>
       )}
       <NavbarWrapper>
-        {location !== '/' ? (
+        {location !== "/" ? (
           <DropDown>
-            <DropDownLink href='/'>BACK</DropDownLink>
+            <DropDownLink href="/">BACK</DropDownLink>
           </DropDown>
         ) : (
           <>
@@ -78,7 +78,6 @@ const NavBar = () => {
             </DropDown>
           </>
         )}
-
       </NavbarWrapper>
     </StyledNavbar>
   );

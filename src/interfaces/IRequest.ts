@@ -52,3 +52,27 @@ export interface IPokemonSpeciesRequest {
     url: string;
   };
 }
+
+export interface IPokemonGenerationRequest {
+  id: number;
+  pokemon_species: [
+    {
+      name: string;
+      url: string;
+    },
+  ];
+}
+
+export interface IPokemonTypeRequest {
+  id: number;
+  name: string;
+  pokemon: [
+    {
+      slot: number;
+      pokemon: {
+        name: string;
+        url: string;
+      };
+    },
+  ];
+}

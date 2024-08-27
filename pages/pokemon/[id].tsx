@@ -29,7 +29,6 @@ export const getServerSideProps = async (
 };
 
 export default function Pokemon({ pokemon }: ICard) {
-
   return (
     <Wrapper>
       <ButtonWrapper>

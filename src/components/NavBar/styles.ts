@@ -70,12 +70,12 @@ export const DropDown = styled.div`
   &:hover ${DropDownContent} {
     display: block;
   }
-  & > a{
-    color: #FFF;
-    &:hover{
-    opacity: 0.5;
-    color: #000;
-    font-weight: bold;
+  & > a {
+    color: #fff;
+    &:hover {
+      opacity: 0.5;
+      color: #000;
+      font-weight: bold;
     }
   }
 `;

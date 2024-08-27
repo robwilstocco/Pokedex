@@ -3,7 +3,6 @@ import Header from "../Header/Header";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer";
 import { ILayout } from "../../interfaces/ILayout";
-import Wrapper from "../Wrapper/Wrapper";
 
 const Layout = ({ children }: ILayout) => {
   return (

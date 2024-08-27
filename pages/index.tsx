@@ -6,7 +6,7 @@ import MiniCard from "../src/components/MiniCard/MiniCard";
 import Link from "../src/components/Link/Link";
 import CardList from "../src/components/CardList/CardList";
 import { getPokemonList } from "../src/api";
-import { IHomeProps } from "../src/interfaces/IHomeProps";
+import { IPageProps } from "../src/interfaces/IPageProps";
 import Wrapper from "../src/components/Wrapper/Wrapper";
 import { LIMIT, MAX_POKEMON } from "../utils/globalConstants";
 
@@ -27,7 +27,7 @@ export async function getServerSideProps(ctx: GetServerSidePropsContext) {
   };
 }
 
-export default function Home({ pokemons, page, totalPages }: IHomeProps) {
+export default function Home({ pokemons, page, totalPages }: IPageProps) {
   const router = useRouter();
   return (
     <Wrapper justify="space-between">

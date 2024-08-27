@@ -1,11 +1,14 @@
 import axios from "axios";
 import {
   IPokemonDetailRequest,
+  IPokemonGenerationRequest,
   IPokemonSpeciesRequest,
+  IPokemonTypeRequest,
   IRequest,
 } from "../interfaces/IRequest";
 import { IPokemon, IPokemonDetail } from "../interfaces/IPokemon";
 import { getIdByURL } from "../../utils/formatters";
+import { MAX_POKEMON } from "../../utils/globalConstants";
 
 const http = axios.create({
   baseURL: "https://pokeapi.co/api/v2/",
@@ -100,5 +103,62 @@ export const getPokemonDetail = async (id: string): Promise<IPokemonDetail> => {
   } catch {
     handleError("Could not get Pokemon details");
     return {} as IPokemonDetail;
+  }
+};
+
+export const getPokemonByGeneration = async (
+  id: string,
+): Promise<IPokemon[]> => {
+  try {
+    const { data } = await http.get<IPokemonGenerationRequest>(
+      `/generation/${id}`,
+    );
+    const pokemons = data.pokemon_species.map((pokemon) => {
+      const id = getIdByURL(pokemon.url);
+      return {
+        id,
+        name: pokemon.name.replace(/-/g, " "),
+        image: createPokemonImageUrl(id, "mini"),
+      };
+    });
+
+    return pokemons.sort((a, b) => {
+      if (Number(a.id) > Number(b.id)) {
+        return 1;
+      }
+      if (Number(a.id) < Number(b.id)) {
+        return -1;
+      }
+      return 0;
+    });
+  } catch {
+    handleError("Could not get Pokemon by generation");
+    return {} as IPokemon[];
+  }
+};
+
+export const getPokemonByType = async (type: string): Promise<IPokemon[]> => {
+  try {
+    const { data } = await http.get<IPokemonTypeRequest>(`/type/${type}`);
+    const pokemons = data.pokemon.map(({ pokemon }) => {
+      const id = getIdByURL(pokemon.url);
+      return {
+        id: Number(id) > MAX_POKEMON ? "none" : id,
+        name: pokemon.name.replace(/-/g, " "),
+        image: createPokemonImageUrl(id, "mini"),
+      };
+    });
+    return pokemons.sort((a, b) => {
+      if (Number(a.id) > Number(b.id)) {
+        return 1;
+      }
+      if (Number(a.id) < Number(b.id)) {
+        return -1;
+      }
+      return 0;
+    });
+  } catch {
+    handleError("Could not get Pokemon by types");
+    return {} as IPokemon[];
   }
 };

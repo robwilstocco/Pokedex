@@ -10,7 +10,7 @@ export const CardWrapper = styled.div`
   border-radius: 0.5rem;
   background-color: #b31312;
   margin-top: 1rem;
-  &:hover{
+  &:hover {
     box-shadow: 0px 60px 60px -14px rgba(0, 0, 0, 0.75);
   }
   transform-style: preserve-3d;
