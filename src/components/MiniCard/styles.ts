@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PokemonCard = styled.li`
+export const PokemonCard = styled.div`
   display: flex;
   align-items: center;
   width: 15rem;

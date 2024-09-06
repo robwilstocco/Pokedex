@@ -1,12 +1,18 @@
 import axios from "axios";
 import {
+  IEvolves_to,
   IPokemonDetailRequest,
+  IPokemonEvolutionRequest,
   IPokemonGenerationRequest,
   IPokemonSpeciesRequest,
   IPokemonTypeRequest,
   IRequest,
 } from "../interfaces/IRequest";
-import { IPokemon, IPokemonDetail } from "../interfaces/IPokemon";
+import {
+  IPokemon,
+  IPokemonDetail,
+  IPokemonEvolution,
+} from "../interfaces/IPokemon";
 import { getIdByURL } from "../../utils/formatters";
 import { MAX_POKEMON } from "../../utils/globalConstants";
 
@@ -160,5 +166,65 @@ export const getPokemonByType = async (type: string): Promise<IPokemon[]> => {
   } catch {
     handleError("Could not get Pokemon by types");
     return {} as IPokemon[];
+  }
+};
+
+export const getPokemonEvolution = async (
+  id: string,
+): Promise<IPokemonEvolution[] | []> => {
+  let treeLevel = 0;
+  const pokemonTree: IPokemonEvolution[] = [];
+
+  function treePusher(
+    treeLevel: number,
+    father: string,
+    evolutions: IEvolves_to[],
+  ): IPokemonEvolution[] | [] {
+    if (evolutions.length === 0) return [];
+    const children: IPokemonEvolution[] = [];
+    evolutions.map((evolution) => {
+      if (evolution?.species && evolution.evolves_to) {
+        children.push({
+          treeLevel,
+          father,
+          pokemonInfo: {
+            id: getIdByURL(evolution.species.url),
+            name: evolution.species.name,
+            image: createPokemonImageUrl(
+              getIdByURL(evolution.species.url),
+              "mini",
+            ),
+          },
+          sons: treePusher(
+            treeLevel + 1,
+            evolution.species.name,
+            evolution.evolves_to,
+          ),
+        });
+      } else {
+        return [];
+      }
+    });
+    return children;
+  }
+
+  try {
+    const { chain } = (
+      await http.get<IPokemonEvolutionRequest>(`/evolution-chain/${id}`)
+    ).data;
+    pokemonTree.push({
+      treeLevel,
+      father: "",
+      pokemonInfo: {
+        id: getIdByURL(chain.species.url),
+        name: chain.species.name,
+        image: createPokemonImageUrl(getIdByURL(chain.species.url), "mini"),
+      },
+      sons: treePusher(treeLevel + 1, chain.species.name, chain.evolves_to),
+    });
+    return pokemonTree;
+  } catch {
+    handleError("Could not get Pokemon Evolutions");
+    return [] as IPokemonEvolution[];
   }
 };

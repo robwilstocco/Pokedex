@@ -76,3 +76,21 @@ export interface IPokemonTypeRequest {
     },
   ];
 }
+
+interface ISpecies {
+  name: string;
+  url: string;
+}
+
+export interface IEvolves_to {
+  evolves_to?: IEvolves_to[];
+  species?: ISpecies;
+}
+
+export interface IPokemonEvolutionRequest {
+  id: number;
+  chain: {
+    species: ISpecies;
+    evolves_to: IEvolves_to[];
+  };
+}

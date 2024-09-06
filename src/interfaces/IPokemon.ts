@@ -24,3 +24,10 @@ export interface IPokemonDetail {
   evolution_chain_id: number;
   generation: string;
 }
+
+export interface IPokemonEvolution {
+  treeLevel: number;
+  father: string;
+  pokemonInfo: IPokemon;
+  sons: IPokemonEvolution[] | [];
+}
