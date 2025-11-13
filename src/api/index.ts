@@ -54,19 +54,11 @@ export const getTypes = async () => {
   }
 };
 
-export const getPokemonList = async (
-  currentPage: number,
-  limit: number,
-  max: number,
-): Promise<IPokemon[]> => {
+export const getPokemonList = async (): Promise<IPokemon[]> => {
   try {
-    const offset = currentPage === 1 ? 0 : currentPage * limit - limit;
-    const officialTotal = limit + offset > max ? max - offset : limit;
-
     const { data } = await http.get<IRequest>(
-      `/pokemon/?limit=${officialTotal}&offset=${offset}`,
+      `/pokemon-species?limit=100000&offset=0`,
     );
-
     return data.results.map((result) => {
       const id = getIdByURL(result.url);
       return {
@@ -77,7 +69,7 @@ export const getPokemonList = async (
     });
   } catch {
     handleError("Could not get Pokemon list");
-    return [] as IPokemon[];
+    return [];
   }
 };
 

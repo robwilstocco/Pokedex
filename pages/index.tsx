@@ -1,38 +1,51 @@
-import { useRouter } from "next/router";
-import { GetServerSidePropsContext } from "next";
-import { setCookie, parseCookies } from "nookies";
 import { Pagination } from "@mui/material";
 import MiniCard from "../src/components/MiniCard/MiniCard";
 import Link from "../src/components/Link/Link";
 import CardList from "../src/components/CardList/CardList";
 import { getPokemonList } from "../src/api";
-import { IPageProps } from "../src/interfaces/IPageProps";
 import Wrapper from "../src/components/Wrapper/Wrapper";
-import { LIMIT, MAX_POKEMON } from "../utils/globalConstants";
+import { LIMIT } from "../utils/globalConstants";
+import { useSearchContext } from "../src/context/SearchContext";
+import { useMemo, useState } from "react";
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-  // console.log(ctx.req.cookies)
-  const { currentPage } = parseCookies(ctx, "currentPage");
-  const pokemons = await getPokemonList(
-    Number(currentPage),
-    LIMIT,
-    MAX_POKEMON,
-  );
+export async function getStaticProps() {
+  const pokemons = await getPokemonList();
   return {
     props: {
       pokemons,
-      page: Number(currentPage) || 1,
-      totalPages: Math.ceil(MAX_POKEMON / LIMIT),
+      totalPages: Math.ceil(pokemons.length / LIMIT),
     },
   };
 }
 
-export default function Home({ pokemons, page, totalPages }: IPageProps) {
-  const router = useRouter();
+export default function Home() {
+  const { initialAllPokemon, searchTerm, currentPage, setCurrentPage } =
+    useSearchContext();
+
+  const [pages, setPages] = useState(
+    Math.ceil(initialAllPokemon.length / LIMIT),
+  );
+
+  const filteredList = useMemo(() => {
+    setCurrentPage(1);
+    if (!searchTerm) return initialAllPokemon;
+    return initialAllPokemon.filter(
+      (pokemon) =>
+        pokemon.id.toString() === searchTerm ||
+        pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+  }, [searchTerm]);
+
+  const paginatedResults = useMemo(() => {
+    const startIndex = (currentPage - 1) * LIMIT;
+    setPages(Math.ceil(filteredList.length / LIMIT));
+    return filteredList.slice(startIndex, startIndex + LIMIT);
+  }, [filteredList, currentPage]);
+
   return (
     <Wrapper justify="space-between">
       <CardList>
-        {pokemons.map((pokemon) => (
+        {paginatedResults.map((pokemon) => (
           <Link key={pokemon.id} href={`/pokemon/${pokemon.id}`}>
             <MiniCard
               id={pokemon.id}
@@ -43,14 +56,13 @@ export default function Home({ pokemons, page, totalPages }: IPageProps) {
         ))}
       </CardList>
       <Pagination
-        count={totalPages}
+        count={pages}
         color="primary"
         size="small"
-        page={page}
+        page={currentPage}
         siblingCount={2}
         onChange={(_, page: number) => {
-          setCookie(null, "currentPage", page.toString());
-          router.push("/");
+          setCurrentPage(page);
         }}
       />
     </Wrapper>

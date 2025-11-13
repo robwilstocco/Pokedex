@@ -1,29 +1,38 @@
 import Image from "next/image";
-import { setCookie } from "nookies";
-import { HeaderWrapper, Icons, IconsWrapper, StyledHeader } from "./styles";
+import {
+  HeaderWrapper,
+  Icons,
+  IconsWrapper,
+  LogoText,
+  LogoWrapper,
+  StyledHeader,
+} from "./styles";
 import { FaGithub } from "react-icons/fa";
-import Link from "../Link/Link";
+import SearchBar from "../SearchBar/SearchBar";
+import { useRouter } from "next/router";
 
 const Header = () => {
+  const router = useRouter();
   return (
     <>
       <StyledHeader>
         <HeaderWrapper>
-          <Link href={"/"} onclick={() => setCookie(null, "currentPage", "1")}>
+          <LogoWrapper href="/">
             <Image
               src="/images/logo.png"
               width="50"
               height="50"
               alt="PokeCard"
             />
-            <Image
+            <LogoText
               src="/images/logo_title.png"
               width="240"
               height="80"
               alt="PokeCard"
               priority={true}
             />
-          </Link>
+          </LogoWrapper>
+          {router.pathname === "/" && <SearchBar />}
           <IconsWrapper>
             <Icons href={"https://github.com/robwilstocco/Pokedex"}>
               <FaGithub />

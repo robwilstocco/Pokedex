@@ -2,16 +2,18 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { Router } from "next/router";
 import { useEffect, useState } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ThemeProvider } from "@mui/material";
 import "../styles/global.css";
+import { ThemeProvider } from "@mui/material";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { theme } from "../utils/theme";
 import Loading from "../src/components/Loading/Loading";
 import Layout from "../src/components/Layout/Layout";
+import { SearchProvider } from "../src/context/SearchProvider";
 
 export default function App({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     Router.events.on("routeChangeStart", () => setLoading(true));
     Router.events.on("routeChangeComplete", () => setLoading(false));
@@ -32,9 +34,14 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
-          <Layout>
-            {loading ? <Loading /> : <Component {...pageProps} />}
-          </Layout>
+          <SearchProvider
+            initialAllPokemon={pageProps.pokemons}
+            initialPage={pageProps.initialPage}
+          >
+            <Layout>
+              {loading ? <Loading /> : <Component {...pageProps} />}
+            </Layout>
+          </SearchProvider>
         </ThemeProvider>
       </QueryClientProvider>
     </>

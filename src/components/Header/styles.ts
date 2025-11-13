@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import styled from "styled-components";
 
 export const StyledHeader = styled.header`
@@ -18,6 +19,13 @@ export const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+export const LogoWrapper = styled(Link)`
+  display: flex;
+  align-items: center;
+  &:hover {
+    filter: drop-shadow(0 0 5px var(--secondary));
+  }
+`;
 export const IconsWrapper = styled.div`
   display: flex;
   gap: 10px;
@@ -35,8 +43,10 @@ export const Icons = styled(Link)`
     border-radius: 50%;
   }
 `;
-export const Logo = styled(Link)`
-  text-decoration: none;
-  display: flex;
-  align-items: center;
+
+export const LogoText = styled(Image)`
+  display: block;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
