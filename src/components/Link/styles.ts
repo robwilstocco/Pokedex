@@ -6,3 +6,8 @@ export const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
 `;
+
+export const List = styled.li`
+  list-style-type: none;
+`;
+

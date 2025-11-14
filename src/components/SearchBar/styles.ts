@@ -27,6 +27,11 @@ export const SearchContainer = styled.div`
   height: 35px;
   width: 300px;
 
+  svg {
+    color: var(--secondary);
+    margin-left: 0.5rem;
+  }
+
   @media (max-width: 600px) {
     width: 250px;
   }

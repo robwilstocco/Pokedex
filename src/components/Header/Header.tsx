@@ -26,15 +26,15 @@ const Header = () => {
             />
             <LogoText
               src="/images/logo_title.png"
-              width="240"
-              height="80"
+              width="256"
+              height="82"
               alt="PokeCard"
               priority={true}
             />
           </LogoWrapper>
           {router.pathname === "/" && <SearchBar />}
           <IconsWrapper>
-            <Icons href={"https://github.com/robwilstocco/Pokedex"}>
+            <Icons href={"https://github.com/robwilstocco/Pokedex"} aria-label="Github Link">
               <FaGithub />
             </Icons>
           </IconsWrapper>

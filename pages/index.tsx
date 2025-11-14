@@ -34,7 +34,7 @@ export default function Home() {
         pokemon.id.toString() === searchTerm ||
         pokemon.name.toLowerCase().includes(searchTerm.toLowerCase()),
     );
-  }, [searchTerm]);
+  }, [initialAllPokemon, searchTerm, setCurrentPage]);
 
   const paginatedResults = useMemo(() => {
     const startIndex = (currentPage - 1) * LIMIT;

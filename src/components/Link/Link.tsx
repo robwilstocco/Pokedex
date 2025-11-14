@@ -1,11 +1,13 @@
 import { ILink } from "../../interfaces/ILink";
-import { StyledLink } from "./styles";
+import { List, StyledLink } from "./styles";
 
 const Link = ({ href, onclick, children }: ILink) => {
   return (
-    <StyledLink href={href} onClick={onclick}>
-      {children}
-    </StyledLink>
+    <List>
+      <StyledLink href={href} onClick={onclick}>
+        {children}
+      </StyledLink>
+    </List>
   );
 };
 

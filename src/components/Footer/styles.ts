@@ -10,7 +10,8 @@ export const FooterStyled = styled.footer`
   z-index: 1;
 `;
 
-export const FooterText = styled.h4`
+export const FooterText = styled.h5`
+  font-size: 1rem;
   color: #ffffff;
   text-align: center;
 `;

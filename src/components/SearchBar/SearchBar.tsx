@@ -12,9 +12,7 @@ const SearchBar = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
         placeholder="Search your pokemon..."
       />
-      <SearchButton>
-        <FaSearch />
-      </SearchButton>
+      <FaSearch />
     </SearchContainer>
   );
 };
